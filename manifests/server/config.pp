@@ -8,8 +8,8 @@ class dns::server::config (
   $group    = $dns::server::params::group,
 ) inherits dns::server::params {
 
-  $log_dir  = '/var/log/named'
-  $log_file = "${log_dir}/named.log"
+  $log_dir  = '/var/log/named/'
+  $log_file = '/var/log/named/named.log'
 
   file { $cfg_dir:
     ensure => directory,
@@ -33,21 +33,21 @@ class dns::server::config (
   }
   
   file { '/var/cache/bind':
-    ensure => directory,
+	  ensure => directory,
     owner  => $owner,
     group  => $group,
     mode   => '0755',
   }
   
   file { $log_dir:
-    ensure => directory,
+  	ensure => directory,
     owner  => $owner,
     group  => $group,
     mode   => '0750',
   }
   
   file { $log_file:
-    ensure => file,
+	  ensure => file,
     owner  => $owner,
     group  => $group,
     mode   => '0640',

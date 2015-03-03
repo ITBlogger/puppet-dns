@@ -34,6 +34,10 @@
 #   Array of IP addresses which are allowed to ask ordinary DNS questions.
 #   Default: empty, meaning "any"
 #
+# [*recursion*]
+#   Control whether to allow recursion or not (allowed values are yes or no)
+#   Default: yes
+#
 # === Examples
 #
 #  Debian:
@@ -47,14 +51,16 @@
 #  }
 #
 define dns::server::options (
-  $forwarders = [],
-  $listen_on = [],
-  $listen_on_port = undef,
-  $allow_recursion = [],
-  $check_names_master = undef,
-  $check_names_slave = undef,
+  $forwarders           = [],
+  $listen_on            = [],
+  $listen_on_port       = undef,
+  $allow_recursion      = [],
+  $check_names_master   = undef,
+  $check_names_slave    = undef,
   $check_names_response = undef,
-  $allow_query = [],
+  $allow_query          = [],
+  $recursion            = 'yes',
+  $dnssec               = 'no',
 ) {
   $valid_check_names = ['fail', 'warn', 'ignore']
   $cfg_dir = $::dns::server::params::cfg_dir
